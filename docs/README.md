@@ -22,6 +22,20 @@ For the portfolio-facing project overview, see the main [repository README](../R
 - [Communication Plan](./project-management/11-communication-plan.md)
 - [Change Management Plan](./project-management/12-change-management-plan.md)
 
+## Technical Implementation Documents
+
+- [Technical Documentation Index](./technical-implementation/README.md)
+- [Technology Stack](./technical-implementation/01-technology-stack.md)
+- [System Architecture](./technical-implementation/02-system-architecture.md)
+- [Repository Structure](./technical-implementation/03-repository-structure.md)
+- [Data and Consistency](./technical-implementation/04-data-and-consistency.md)
+- [API, Authentication, and Security](./technical-implementation/05-api-authentication-security.md)
+- [DevOps and Deployment](./technical-implementation/06-devops-deployment.md)
+- [Testing and Quality](./technical-implementation/07-testing-quality.md)
+- [Observability and Operations](./technical-implementation/08-observability-operations.md)
+- [Technical Implementation Roadmap](./technical-implementation/09-implementation-roadmap.md)
+- [Architecture Decisions](./technical-implementation/10-architecture-decisions.md)
+
 ## MVP Definition
 
 The MVP is complete when a merchant can create a deal, an admin can approve it, a customer can claim it, and the merchant can redeem the resulting voucher exactly once using either a QR token or a manual voucher code.

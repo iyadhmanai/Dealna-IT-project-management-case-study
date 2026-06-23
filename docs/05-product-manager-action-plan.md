@@ -127,7 +127,7 @@ I would make these decisions before coding:
 
 - First city: choose Dubai or Riyadh.
 - MVP categories: use the five recommended categories only.
-- Authentication approach: choose Auth.js for control or Clerk for speed.
+- Authentication approach: use Clerk for identity and keep Dealna roles and business permissions in PostgreSQL.
 - Database provider: choose Supabase or Neon for a simple managed PostgreSQL setup.
 - Voucher policy: one claim per customer per deal in MVP.
 - Payment policy: no paid checkout in MVP.

@@ -2,9 +2,9 @@
 
 ## Project Status
 
-**Status:** In Progress  
-**Current Phase:** Planning and Documentation  
-**Role:** IT Project Manager / Product Manager  
+**Status:** In Progress
+**Current Phase:** Technical Architecture and Implementation Preparation
+**Role:** IT Project Manager / Product Manager
 **Project Type:** Portfolio case study for a software MVP
 
 ## Executive Summary
@@ -87,6 +87,20 @@ The MVP is successful when:
 - [Communication Plan](./docs/project-management/11-communication-plan.md)
 - [Change Management Plan](./docs/project-management/12-change-management-plan.md)
 
+### Technical Implementation
+
+- [Technical Documentation Index](./docs/technical-implementation/README.md)
+- [Technology Stack](./docs/technical-implementation/01-technology-stack.md)
+- [System Architecture](./docs/technical-implementation/02-system-architecture.md)
+- [Repository Structure](./docs/technical-implementation/03-repository-structure.md)
+- [Data and Consistency](./docs/technical-implementation/04-data-and-consistency.md)
+- [API, Authentication, and Security](./docs/technical-implementation/05-api-authentication-security.md)
+- [DevOps and Deployment](./docs/technical-implementation/06-devops-deployment.md)
+- [Testing and Quality](./docs/technical-implementation/07-testing-quality.md)
+- [Observability and Operations](./docs/technical-implementation/08-observability-operations.md)
+- [Technical Implementation Roadmap](./docs/technical-implementation/09-implementation-roadmap.md)
+- [Architecture Decisions](./docs/technical-implementation/10-architecture-decisions.md)
+
 ## Current Deliverables
 
 | Deliverable | Status |
@@ -103,22 +117,30 @@ The MVP is successful when:
 | MoSCoW prioritization | Complete |
 | Communication plan | Complete |
 | Change management plan | Complete |
+| Production technology stack | Complete |
+| System architecture | Complete |
+| Data consistency strategy | Complete |
+| Security and deployment strategy | Complete |
+| Technical implementation roadmap | Complete |
 | Visual diagrams | Planned |
 | Portfolio website case study | Planned |
 | Working MVP application | Planned |
 
-## Recommended Implementation Stack
+## Selected Implementation Stack
 
-- Next.js
-- TypeScript
-- Tailwind CSS
-- PostgreSQL
-- Prisma
-- Auth.js or Clerk
-- QR code generation package
-- Browser QR scanner package
-- Vercel
-- GitHub Actions
+- Node.js 24 LTS and strict TypeScript
+- pnpm workspaces and Turborepo
+- Next.js 16, React 19, Tailwind CSS 4, and shadcn/ui
+- NestJS 11 REST API with OpenAPI
+- Clerk for identity and Dealna-owned authorization
+- PostgreSQL 18 and Prisma ORM 7
+- Redis and BullMQ for rate limiting and background jobs
+- S3-compatible object storage
+- Vitest, Jest/Supertest, Testcontainers, and Playwright
+- OpenTelemetry, structured logs, and Sentry
+- Docker, GitHub Actions, and managed cloud deployments
+
+See the [technical implementation documentation](./docs/technical-implementation/README.md) for rationale, boundaries, and rollout decisions.
 
 ## Repository Structure
 
@@ -143,6 +165,18 @@ Dealna/
       10-moscow-prioritization.md
       11-communication-plan.md
       12-change-management-plan.md
+    technical-implementation/
+      README.md
+      01-technology-stack.md
+      02-system-architecture.md
+      03-repository-structure.md
+      04-data-and-consistency.md
+      05-api-authentication-security.md
+      06-devops-deployment.md
+      07-testing-quality.md
+      08-observability-operations.md
+      09-implementation-roadmap.md
+      10-architecture-decisions.md
   assets/
     diagrams/
     screenshots/
@@ -153,12 +187,13 @@ Dealna/
 
 ## Next Steps
 
-- Create a GitHub repository and push this documentation package.
-- Create GitHub Issues from the roadmap and task estimates.
+- Scaffold the pnpm and Turborepo workspace.
+- Create the Next.js web, NestJS API, and worker applications.
+- Add local PostgreSQL, Redis, and object storage through Docker Compose.
+- Create GitHub Issues from the technical implementation roadmap.
 - Create a GitHub Project board with Backlog, Planned, In Progress, Review, and Done.
 - Add visual diagrams for the user journey, voucher redemption flow, and system context.
 - Build a portfolio case study page that summarizes this work for job applications.
-- Start the technical MVP implementation.
 
 ## Portfolio Positioning
 

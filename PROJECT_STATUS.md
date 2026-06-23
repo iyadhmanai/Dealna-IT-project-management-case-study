@@ -2,13 +2,13 @@
 
 ## Current Status
 
-**Status:** In Progress  
-**Phase:** Planning and Documentation  
-**Last Updated:** 2026-05-18
+**Status:** In Progress
+**Phase:** Technical Architecture and Implementation Preparation
+**Last Updated:** 2026-06-13
 
 ## Summary
 
-The project currently contains a complete first version of the planning and project management documentation for the Dealna MVP. The repository is ready to be pushed to GitHub as an in-progress portfolio project.
+The project contains a complete first version of the product, project management, and technical architecture documentation for the Dealna MVP. The next delivery phase is scaffolding and implementing the production-oriented application workspace.
 
 ## Completed
 
@@ -30,35 +30,44 @@ The project currently contains a complete first version of the planning and proj
 - Created changelog.
 - Created asset and export folders.
 - Created GitHub issue templates for tasks, risks, and change requests.
+- Published the project repository on GitHub.
+- Selected the production-oriented technology stack.
+- Documented the modular-monolith system architecture.
+- Documented repository boundaries and deployment processes.
+- Documented transactional claim and redemption strategies.
+- Documented security, testing, and observability requirements.
+- Created the technical implementation roadmap and architecture decisions.
 
 ## In Progress
 
-- Preparing the repository for GitHub presentation.
-- Positioning the project as an IT project management case study.
+- Converting the technical roadmap into implementation work.
+- Preparing the monorepo foundation.
 
 ## Planned Next
 
-1. Initialize Git.
-2. Push the project to a public GitHub repository.
-3. Create GitHub Issues based on the roadmap and task estimate.
-4. Create a GitHub Project board.
-5. Add diagrams:
+1. Scaffold the pnpm and Turborepo workspace.
+2. Create the Next.js web application.
+3. Create the NestJS API.
+4. Add PostgreSQL, Redis, and object storage to Docker Compose.
+5. Configure Prisma, OpenAPI, CI, and health checks.
+6. Create GitHub Issues based on the technical roadmap.
+7. Create a GitHub Project board.
+8. Add diagrams:
    - Stakeholder map.
    - User journey.
    - Voucher redemption flow.
    - High-level system context.
-6. Export selected documentation as PDF for job applications.
-7. Build a portfolio website case study page.
-8. Begin the technical MVP implementation.
+9. Export selected documentation as PDF for job applications.
+10. Build a portfolio website case study page.
 
 ## Open Decisions
 
 | Decision | Options | Recommendation |
 | --- | --- | --- |
 | First launch city | Dubai, Riyadh, Jeddah, Cairo, Doha | Dubai or Riyadh |
-| Authentication approach | Auth.js, Clerk, custom JWT | Auth.js for portfolio control or Clerk for speed |
-| Database provider | Supabase, Neon, Railway, Render | Supabase or Neon |
-| First implementation target | Documentation only, web MVP, portfolio website | Push docs first, then build portfolio case study, then MVP |
+| Initial deployment provider | Railway, Render, Fly.io, AWS | Start with a managed container platform |
+| Managed PostgreSQL provider | Neon, Supabase, Railway, AWS RDS | Choose during deployment setup |
+| Initial implementation target | Foundation, identity, business workflow | Build the workspace foundation first |
 | PDF exports | None, selected docs, full pack | Selected docs plus one full pack later |
 
 ## Current Risks
@@ -67,8 +76,10 @@ The project currently contains a complete first version of the planning and proj
 | --- | --- | --- |
 | Scope creep | Active | Keep MVP focused on voucher lifecycle |
 | Portfolio presentation feels too document-heavy | Active | Add case study summary and diagrams |
-| No working MVP yet | Accepted | Present repository clearly as in-progress planning phase |
+| No working MVP yet | Active | Begin implementation from the technical roadmap |
 | Missing visual artifacts | Active | Add diagrams before broad job application sharing |
+| Architecture is too broad for one developer | Active | Deliver in vertical phases and defer optional infrastructure |
+| Identity provider dependency | Accepted | Keep Dealna authorization provider-independent |
 
 ## GitHub Presentation Checklist
 
@@ -80,7 +91,7 @@ The project currently contains a complete first version of the planning and proj
 - [x] Asset folders exist.
 - [x] GitHub issue templates exist.
 - [x] Git repository initialized.
-- [ ] GitHub repository created.
+- [x] GitHub repository created.
 - [ ] Issues created.
 - [ ] Project board created.
 - [ ] Diagrams added.

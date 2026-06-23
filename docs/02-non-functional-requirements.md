@@ -132,7 +132,7 @@ The system should be designed so currency, city, country, language, and right-to
 
 ### NFR-OPS-001: Cloud Deployment
 
-The MVP should be deployable on Vercel with a managed PostgreSQL database such as Supabase, Neon, Railway, or Render.
+The web application should be deployable on Vercel or as a container. The API and worker should be deployable as containers with managed PostgreSQL and Redis services.
 
 ### NFR-OPS-002: Environment Separation
 

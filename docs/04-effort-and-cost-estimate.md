@@ -5,7 +5,7 @@
 This estimate assumes:
 
 - One full-stack developer building a portfolio-grade MVP.
-- Stack: Next.js, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Auth.js or Clerk, Vercel.
+- Stack: Next.js, NestJS, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Clerk, Redis, and containerized deployment.
 - Scope includes customer, merchant, and admin flows.
 - Scope excludes paid voucher checkout, mobile native apps, advanced fraud scoring, multilingual UI, and production-scale compliance operations.
 - Estimates include implementation, basic testing, and documentation.
@@ -55,7 +55,7 @@ For planning, this document uses a midpoint freelance rate of USD 60 per hour.
 | Hosting | Vercel hobby/pro | USD 0-20 |
 | PostgreSQL | Supabase, Neon, Railway, Render | USD 0-25 |
 | File storage | Supabase Storage or Cloudinary | USD 0-20 |
-| Auth | Auth.js self-managed or Clerk | USD 0-25 |
+| Identity | Clerk | USD 0-variable by usage |
 | Email | Resend, SendGrid, Postmark | USD 0-20 |
 | Monitoring/logging | Vercel logs, Sentry free tier | USD 0-26 |
 | Domain | Any registrar | USD 1-3 monthly equivalent |
