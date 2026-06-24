@@ -2,6 +2,23 @@
 
 All notable changes to this project documentation package will be recorded here.
 
+## 2026-06-23
+
+### Added
+
+- Scaffolded Angular frontend application in `apps/web`.
+- Scaffolded Spring Boot Java backend application in `apps/api`.
+- Added public Spring Boot API endpoints for project status and launch categories.
+- Added Angular API service for backend communication.
+- Added Dealna frontend implementation shell.
+- Added local PostgreSQL Docker Compose configuration for the backend.
+
+### Changed
+
+- Pivoted the implementation stack from the earlier TypeScript backend plan to Angular and Spring Boot Java.
+- Replaced the technical implementation documentation with Angular and Spring Boot architecture guidance.
+- Updated project status, stack references, and next implementation steps.
+
 ## 2026-06-13
 
 ### Added

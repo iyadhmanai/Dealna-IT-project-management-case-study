@@ -3,7 +3,7 @@
 ## Project Status
 
 **Status:** In Progress
-**Current Phase:** Technical Architecture and Implementation Preparation
+**Current Phase:** Angular and Spring Boot Implementation Foundation
 **Role:** IT Project Manager / Product Manager
 **Project Type:** Portfolio case study for a software MVP
 
@@ -128,17 +128,18 @@ The MVP is successful when:
 
 ## Selected Implementation Stack
 
-- Node.js 24 LTS and strict TypeScript
-- pnpm workspaces and Turborepo
-- Next.js 16, React 19, Tailwind CSS 4, and shadcn/ui
-- NestJS 11 REST API with OpenAPI
-- Clerk for identity and Dealna-owned authorization
-- PostgreSQL 18 and Prisma ORM 7
-- Redis and BullMQ for rate limiting and background jobs
-- S3-compatible object storage
-- Vitest, Jest/Supertest, Testcontainers, and Playwright
-- OpenTelemetry, structured logs, and Sentry
-- Docker, GitHub Actions, and managed cloud deployments
+- Angular 22 frontend
+- TypeScript and SCSS
+- Spring Boot 4.1 backend
+- Java 17 and Maven
+- Spring Web MVC
+- Spring Security
+- Spring Data JPA
+- Flyway database migrations
+- PostgreSQL
+- Spring Boot Actuator
+- Docker Compose for local infrastructure
+- JUnit, Spring Boot Test, and Testcontainers
 
 See the [technical implementation documentation](./docs/technical-implementation/README.md) for rationale, boundaries, and rollout decisions.
 
@@ -150,6 +151,9 @@ Dealna/
   PROJECT_STATUS.md
   CHANGELOG.md
   LICENSE
+  apps/
+    web/
+    api/
   docs/
     README.md
     01-functional-requirements.md
@@ -187,13 +191,40 @@ Dealna/
 
 ## Next Steps
 
-- Scaffold the pnpm and Turborepo workspace.
-- Create the Next.js web, NestJS API, and worker applications.
-- Add local PostgreSQL, Redis, and object storage through Docker Compose.
+- Continue the Angular application shell.
+- Continue the Spring Boot API foundation.
+- Add the first Flyway migrations and JPA entities.
+- Add business, deal, voucher, and redemption modules.
 - Create GitHub Issues from the technical implementation roadmap.
 - Create a GitHub Project board with Backlog, Planned, In Progress, Review, and Done.
 - Add visual diagrams for the user journey, voucher redemption flow, and system context.
 - Build a portfolio case study page that summarizes this work for job applications.
+
+## Local Development
+
+Run the Angular frontend:
+
+```bash
+npm run web:start
+```
+
+Run the Spring Boot backend:
+
+```bash
+npm run api:start
+```
+
+Run the Spring Boot backend without local PostgreSQL for the current public API slice:
+
+```bash
+npm run api:start:demo
+```
+
+The frontend expects the API at:
+
+```text
+http://localhost:8080/api/v1
+```
 
 ## Portfolio Positioning
 

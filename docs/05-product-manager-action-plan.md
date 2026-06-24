@@ -127,7 +127,7 @@ I would make these decisions before coding:
 
 - First city: choose Dubai or Riyadh.
 - MVP categories: use the five recommended categories only.
-- Authentication approach: use Clerk for identity and keep Dealna roles and business permissions in PostgreSQL.
+- Authentication approach: use Spring Security with an OAuth2/OIDC provider selected during the identity phase, while keeping Dealna roles and business permissions in PostgreSQL.
 - Database provider: choose Supabase or Neon for a simple managed PostgreSQL setup.
 - Voucher policy: one claim per customer per deal in MVP.
 - Payment policy: no paid checkout in MVP.
@@ -147,4 +147,4 @@ I would make these decisions before coding:
 
 ## 12. My Recommended Next Step
 
-The next step is to turn the roadmap into implementation tickets and start Phase 1. The first technical milestone should produce a running Next.js app with authentication, roles, database migrations, seeded categories, and the first dashboard shells.
+The next step is to turn the roadmap into implementation tickets and continue Phase 1. The first technical milestone should produce a running Angular app, Spring Boot API, database migrations, seeded categories, and the first dashboard shells.

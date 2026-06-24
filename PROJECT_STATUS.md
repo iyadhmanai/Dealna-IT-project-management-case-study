@@ -3,12 +3,12 @@
 ## Current Status
 
 **Status:** In Progress
-**Phase:** Technical Architecture and Implementation Preparation
-**Last Updated:** 2026-06-13
+**Phase:** Angular and Spring Boot Implementation Foundation
+**Last Updated:** 2026-06-23
 
 ## Summary
 
-The project contains a complete first version of the product, project management, and technical architecture documentation for the Dealna MVP. The next delivery phase is scaffolding and implementing the production-oriented application workspace.
+The project contains a complete first version of the product and project management documentation, plus a first runnable implementation foundation with Angular for the frontend and Spring Boot Java for the backend.
 
 ## Completed
 
@@ -31,25 +31,30 @@ The project contains a complete first version of the product, project management
 - Created asset and export folders.
 - Created GitHub issue templates for tasks, risks, and change requests.
 - Published the project repository on GitHub.
-- Selected the production-oriented technology stack.
+- Selected Angular and Spring Boot as the implementation stack.
 - Documented the modular-monolith system architecture.
 - Documented repository boundaries and deployment processes.
 - Documented transactional claim and redemption strategies.
 - Documented security, testing, and observability requirements.
 - Created the technical implementation roadmap and architecture decisions.
+- Scaffolded the Angular frontend in `apps/web`.
+- Scaffolded the Spring Boot backend in `apps/api`.
+- Added public status and category endpoints.
+- Connected the Angular shell to the Spring Boot API contract.
+- Added local PostgreSQL Compose configuration.
 
 ## In Progress
 
-- Converting the technical roadmap into implementation work.
-- Preparing the monorepo foundation.
+- Building the application foundation.
+- Preparing the first domain model and migration slice.
 
 ## Planned Next
 
-1. Scaffold the pnpm and Turborepo workspace.
-2. Create the Next.js web application.
-3. Create the NestJS API.
-4. Add PostgreSQL, Redis, and object storage to Docker Compose.
-5. Configure Prisma, OpenAPI, CI, and health checks.
+1. Add the first Flyway migration.
+2. Add JPA entities for categories and businesses.
+3. Replace static category metadata with persisted seed data.
+4. Add CORS and security configuration for authenticated phases.
+5. Add CI for Angular build and Maven test.
 6. Create GitHub Issues based on the technical roadmap.
 7. Create a GitHub Project board.
 8. Add diagrams:
@@ -67,7 +72,7 @@ The project contains a complete first version of the product, project management
 | First launch city | Dubai, Riyadh, Jeddah, Cairo, Doha | Dubai or Riyadh |
 | Initial deployment provider | Railway, Render, Fly.io, AWS | Start with a managed container platform |
 | Managed PostgreSQL provider | Neon, Supabase, Railway, AWS RDS | Choose during deployment setup |
-| Initial implementation target | Foundation, identity, business workflow | Build the workspace foundation first |
+| Initial implementation target | Foundation, domain model, business workflow | Build the domain model next |
 | PDF exports | None, selected docs, full pack | Selected docs plus one full pack later |
 
 ## Current Risks
@@ -79,7 +84,7 @@ The project contains a complete first version of the product, project management
 | No working MVP yet | Active | Begin implementation from the technical roadmap |
 | Missing visual artifacts | Active | Add diagrams before broad job application sharing |
 | Architecture is too broad for one developer | Active | Deliver in vertical phases and defer optional infrastructure |
-| Identity provider dependency | Accepted | Keep Dealna authorization provider-independent |
+| Identity provider decision is open | Active | Keep authorization backend-owned and choose provider during identity phase |
 
 ## GitHub Presentation Checklist
 

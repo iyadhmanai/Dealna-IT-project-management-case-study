@@ -1,6 +1,6 @@
 # Repository Structure
 
-## Proposed Monorepo
+## Current Structure
 
 ```text
 Dealna/
@@ -8,142 +8,66 @@ Dealna/
     web/
       src/
         app/
-        components/
-        features/
-        lib/
-      public/
+        environments/
+      angular.json
+      package.json
     api/
       src/
-        common/
-        modules/
-          identity/
-          businesses/
-          categories/
-          deals/
-          vouchers/
-          redemptions/
-          moderation/
-          analytics/
-          audit/
-          files/
-          notifications/
-    worker/
-      src/
-        processors/
-        schedules/
-  packages/
-    api-client/
-    database/
-      prisma/
-        schema.prisma
-        migrations/
-        seed.ts
-    domain/
-    observability/
-    test-utils/
-    typescript-config/
-    eslint-config/
-    ui/
-  e2e/
-  infrastructure/
-    docker/
-    scripts/
+        main/
+          java/com/dealna/api/
+          resources/
+        test/
+      compose.yaml
+      pom.xml
   docs/
     project-management/
     technical-implementation/
-  .github/
-    workflows/
-  compose.yaml
-  package.json
-  pnpm-lock.yaml
-  pnpm-workspace.yaml
-  turbo.json
 ```
 
-## Application Responsibilities
+## Frontend Rules
 
-### `apps/web`
+`apps/web` contains only Angular code.
 
-- Routes and layouts.
-- Public SEO pages.
-- Customer, merchant, and admin interfaces.
-- Clerk web integration.
-- Backend-for-frontend calls.
-- No direct database access.
-- No authoritative business rules.
-
-### `apps/api`
-
-- REST API and OpenAPI document.
-- Authentication token verification.
-- Authorization and ownership.
-- Domain workflows.
-- Database transactions.
-- Audit event creation.
-- Queue job production.
-
-### `apps/worker`
-
-- BullMQ consumers.
-- Retryable notifications.
-- Scheduled expiry maintenance.
-- Analytics aggregation.
-- Outbox delivery.
-
-The worker must call shared application services or purpose-built job handlers. It must not duplicate business rules from the API.
-
-## Shared Package Responsibilities
-
-### `packages/database`
-
-- Prisma schema and generated client.
-- Migrations.
-- Seed data.
-- Database test helpers.
-
-### `packages/domain`
-
-- Framework-independent value objects.
-- Status transition rules.
-- Eligibility policies.
-- Voucher token utilities.
-- Shared domain errors.
-
-This package must not import NestJS, Next.js, Prisma, Clerk, or Redis.
-
-### `packages/api-client`
-
-- Generated types and client from OpenAPI.
-- No handwritten duplication of API response types.
-
-### `packages/ui`
-
-- Shared visual primitives.
-- Design tokens.
-- Accessible form and feedback components.
-- No application-specific data fetching.
-
-### Configuration Packages
-
-Centralize strict TypeScript and ESLint rules. Applications may extend them but should not silently weaken them.
-
-## Dependency Rules
-
-Allowed:
+Recommended feature structure:
 
 ```text
-apps -> packages
-infrastructure packages -> domain
-api-client -> generated OpenAPI types
+src/app/
+  core/
+  shared/
+  features/
+    public-deals/
+    customer-vouchers/
+    merchant-dashboard/
+    admin-dashboard/
 ```
 
-Forbidden:
+## Backend Rules
+
+`apps/api` contains all Spring Boot backend logic.
+
+Recommended package structure:
 
 ```text
-domain -> framework or database
-web -> Prisma
-worker -> web
-ui -> application domain modules
+common/
+  config/
+  errors/
+  security/
+marketplace/
+identity/
+businesses/
+deals/
+vouchers/
+redemptions/
+moderation/
+analytics/
+audit/
 ```
 
-Use lint rules and package boundaries to prevent accidental coupling.
+## Dependency Direction
+
+- Angular calls Spring Boot through HTTP only.
+- Angular does not connect to the database.
+- Controllers stay thin.
+- Services own business rules.
+- Database transactions live in Spring services.
+- Repositories do not contain authorization logic.

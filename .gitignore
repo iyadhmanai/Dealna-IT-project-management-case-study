@@ -17,11 +17,13 @@ pnpm-debug.log*
 node_modules/
 
 # Build output
+.angular/
 .next/
 out/
 dist/
 build/
 coverage/
+target/
 
 # IDE
 .idea/

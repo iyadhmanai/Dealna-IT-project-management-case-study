@@ -5,7 +5,7 @@
 This estimate assumes:
 
 - One full-stack developer building a portfolio-grade MVP.
-- Stack: Next.js, NestJS, TypeScript, Tailwind CSS, Prisma, PostgreSQL, Clerk, Redis, and containerized deployment.
+- Stack: Angular, Spring Boot Java, Maven, Spring Security, Spring Data JPA, Flyway, PostgreSQL, Docker Compose, and containerized deployment.
 - Scope includes customer, merchant, and admin flows.
 - Scope excludes paid voucher checkout, mobile native apps, advanced fraud scoring, multilingual UI, and production-scale compliance operations.
 - Estimates include implementation, basic testing, and documentation.
@@ -26,7 +26,7 @@ For planning, this document uses a midpoint freelance rate of USD 60 per hour.
 | --- | ---: | ---: |
 | Discovery, requirements, backlog setup | 12-20 | USD 720-1,200 |
 | Project setup, tooling, layout foundation | 16-28 | USD 960-1,680 |
-| Database design and Prisma schema | 16-24 | USD 960-1,440 |
+| Database design, JPA model, and Flyway migrations | 18-28 | USD 1,080-1,680 |
 | Authentication and role-based access control | 24-40 | USD 1,440-2,400 |
 | Merchant business profile and approval workflow | 28-44 | USD 1,680-2,640 |
 | Deal creation, edit, submission, approval workflow | 36-56 | USD 2,160-3,360 |
@@ -55,7 +55,7 @@ For planning, this document uses a midpoint freelance rate of USD 60 per hour.
 | Hosting | Vercel hobby/pro | USD 0-20 |
 | PostgreSQL | Supabase, Neon, Railway, Render | USD 0-25 |
 | File storage | Supabase Storage or Cloudinary | USD 0-20 |
-| Identity | Clerk | USD 0-variable by usage |
+| Identity | OAuth2/OIDC provider, selected later | USD 0-variable by usage |
 | Email | Resend, SendGrid, Postmark | USD 0-20 |
 | Monitoring/logging | Vercel logs, Sentry free tier | USD 0-26 |
 | Domain | Any registrar | USD 1-3 monthly equivalent |
@@ -67,8 +67,8 @@ For a portfolio MVP, the realistic monthly cost can be kept near USD 0-30 by usi
 
 | ID | Task | Priority | Effort |
 | --- | --- | --- | ---: |
-| T-001 | Initialize Next.js, TypeScript, Tailwind | Must | 6-10h |
-| T-002 | Configure Prisma and PostgreSQL | Must | 6-10h |
+| T-001 | Initialize Angular application | Must | 6-10h |
+| T-002 | Configure Spring Boot, Flyway, and PostgreSQL | Must | 8-12h |
 | T-003 | Create domain schema and migrations | Must | 10-14h |
 | T-004 | Seed categories and demo city | Must | 4-6h |
 | T-005 | Implement auth and roles | Must | 18-30h |

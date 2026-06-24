@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:18'
+    environment:
+      - 'POSTGRES_DB=dealna'
+      - 'POSTGRES_PASSWORD=dealna'
+      - 'POSTGRES_USER=dealna'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'dealna_postgres_data:/var/lib/postgresql/data'
+
+volumes:
+  dealna_postgres_data:

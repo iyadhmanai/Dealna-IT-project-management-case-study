@@ -90,7 +90,7 @@ The project should use TypeScript with strict typing for domain entities, API in
 
 ### NFR-MNT-002: Database Migrations
 
-All database schema changes must be captured through Prisma migrations.
+All database schema changes must be captured through Flyway migrations.
 
 ### NFR-MNT-003: Modular Domain Logic
 
@@ -132,7 +132,7 @@ The system should be designed so currency, city, country, language, and right-to
 
 ### NFR-OPS-001: Cloud Deployment
 
-The web application should be deployable on Vercel or as a container. The API and worker should be deployable as containers with managed PostgreSQL and Redis services.
+The Angular web application should be deployable as static assets or a frontend container. The Spring Boot API should be deployable as a container with a managed PostgreSQL database.
 
 ### NFR-OPS-002: Environment Separation
 

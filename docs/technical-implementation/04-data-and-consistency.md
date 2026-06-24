@@ -1,129 +1,50 @@
 # Data and Consistency
 
-## Data Principles
+## Source of Truth
 
-- PostgreSQL is the source of truth.
-- Financial and voucher values use exact decimal types.
-- Timestamps are stored in UTC.
-- User-facing dates are rendered in the selected city timezone.
-- Critical state changes are transactional and auditable.
-- Redis is never authoritative for voucher state.
+PostgreSQL is the source of truth for:
 
-## Core Model Refinements
+- Users and profiles.
+- Businesses.
+- Deals.
+- Vouchers.
+- Redemptions.
+- Audit logs.
 
-The implementation should extend the initial domain model with:
+## Migration Strategy
 
-- `BusinessMember` for owners and merchant staff.
-- `ModerationDecision` for approval history and reasons.
-- `OutboxEvent` for reliable asynchronous work.
-- `IdempotencyKey` for retry-safe mutations where appropriate.
-- `version` or guarded status updates for concurrency-sensitive records.
-- `deletedAt` only where soft deletion has a defined operational purpose.
+Use Flyway for every database schema change.
 
-## Identifier Strategy
+Rules:
 
-- Use UUIDs for internal primary keys.
-- Use slugs for public business and deal URLs.
-- Never place voucher database IDs in QR payloads.
-- Use a cryptographically random 256-bit token for QR redemption.
-- Store only a keyed hash or SHA-256 hash of the QR token.
-- Display a separate human-readable manual voucher code.
+- No manual production schema changes.
+- No Hibernate auto-create in production.
+- Use `spring.jpa.hibernate.ddl-auto=validate`.
+- Every table change must have a migration.
 
-## Constraints and Indexes
+## Voucher Claim Consistency
 
-Required constraints:
+Claiming must be transactional:
 
-- Unique user identity provider ID.
-- Unique category slug.
-- Unique business slug within the selected scope.
-- Unique deal slug within a business.
-- Unique voucher code.
-- Unique QR token hash.
-- Unique voucher per customer and deal for the MVP.
-- Unique redemption per voucher.
-- Valid price and date check constraints where practical.
+1. Validate customer role.
+2. Load deal with current status and dates.
+3. Check claim limit.
+4. Create voucher with unique code and QR token hash.
+5. Increment claim count.
+6. Commit once.
 
-Required indexes:
+Database constraints must protect against duplicate customer claims.
 
-- Deals by `status`, `city`, `categoryId`, `startDate`, and `endDate`.
-- Businesses by `status`, `city`, and category.
-- Vouchers by customer and status.
-- Vouchers by deal and status.
-- Redemptions by business and redeemed timestamp.
-- Pending moderation queues by status and submitted timestamp.
-- Audit records by entity and timestamp.
+## Voucher Redemption Consistency
 
-## Claim Transaction
+Redemption must be transactional:
 
-The claim workflow must:
+1. Validate merchant membership.
+2. Find voucher by manual code or QR token hash.
+3. Ensure voucher is active and not expired.
+4. Ensure voucher belongs to the merchant business.
+5. Mark voucher as redeemed.
+6. Create redemption record.
+7. Create audit record.
 
-1. Start a short transaction.
-2. Re-read the deal inside the transaction.
-3. Validate status and active date range.
-4. Guard inventory with a conditional update.
-5. Create the voucher.
-6. Create an audit or outbox record.
-7. Commit.
-
-Use `Serializable` isolation with bounded retry for serialization conflicts, or implement an equivalent conditional update that cannot exceed `maxClaims`.
-
-The database unique constraint on `(dealId, customerId)` is the final protection against duplicate claims.
-
-## Redemption Transaction
-
-Redemption should use a guarded state transition:
-
-```sql
-UPDATE vouchers
-SET status = 'REDEEMED',
-    redeemed_at = NOW(),
-    redeemed_by_merchant_user_id = $merchantUserId
-WHERE id = $voucherId
-  AND status = 'ACTIVE'
-  AND expires_at > NOW();
-```
-
-The application verifies that exactly one row changed. In the same transaction it creates:
-
-- One `Redemption` record.
-- One `AuditLog` record.
-- Optional `OutboxEvent` records.
-
-A unique constraint on `redemptions.voucher_id` provides an additional database guarantee.
-
-## Idempotency
-
-Use an `Idempotency-Key` header for claim and redemption mutations.
-
-Store:
-
-- Actor ID.
-- Endpoint or operation.
-- Request hash.
-- Response status and body reference.
-- Expiry timestamp.
-
-Reusing the same key with a different payload must return an error.
-
-## Migrations
-
-- Migrations are created locally and reviewed in pull requests.
-- Production uses `prisma migrate deploy`.
-- Application startup must not generate migrations.
-- Destructive migrations require a documented expand/migrate/contract plan.
-- Backups and rollback procedures are verified before high-risk migrations.
-
-## Search
-
-Initial search uses PostgreSQL:
-
-- Normalized city and category filters.
-- `ILIKE` for early development only.
-- Trigram indexes or full-text search when the dataset grows.
-
-Introduce a dedicated search engine only after measuring a real limitation.
-
-## Official References
-
-- [Prisma transactions](https://www.prisma.io/docs/orm/prisma-client/queries/transactions)
-- [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+A unique redemption constraint per voucher must make duplicate redemption impossible.

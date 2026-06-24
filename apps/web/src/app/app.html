@@ -1,0 +1,83 @@
+<main class="app-shell">
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero__content">
+      <p class="eyebrow">Dealna implementation workspace</p>
+      <h1 id="page-title">Local deals marketplace for MENA</h1>
+      <p class="hero__summary">
+        Angular now owns the browser experience. Spring Boot owns the API,
+        security, persistence, workflows, and operations.
+      </p>
+      <div class="hero__actions" aria-label="Primary project links">
+        <a href="/docs/README.md">Documentation</a>
+        <a href="https://github.com/iyadhmanai/Dealna-IT-project-management-case-study">GitHub</a>
+      </div>
+    </div>
+
+    <aside class="status-panel" aria-label="API status">
+      @if (status$ | async; as status) {
+        <span class="status-pill">API connected</span>
+        <h2>{{ status.product }}</h2>
+        <p>{{ status.phase }}</p>
+        <ul>
+          @for (item of status.stack; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      } @else {
+        <span class="status-pill status-pill--muted">API loading</span>
+        <h2>Waiting for Spring Boot</h2>
+        <p>Start the backend on port 8080 to load live project metadata.</p>
+      }
+    </aside>
+  </section>
+
+  <section class="content-grid" aria-label="Implementation focus">
+    <article>
+      <span>01</span>
+      <h2>Marketplace trust</h2>
+      <p>
+        Merchants submit businesses and deals for admin approval before public
+        visibility.
+      </p>
+    </article>
+    <article>
+      <span>02</span>
+      <h2>Voucher integrity</h2>
+      <p>
+        Claiming and redemption will be guarded with transactional Spring
+        services and PostgreSQL constraints.
+      </p>
+    </article>
+    <article>
+      <span>03</span>
+      <h2>Portfolio delivery</h2>
+      <p>
+        The repo keeps requirements, PM artifacts, architecture docs, and code
+        together for a clean case study.
+      </p>
+    </article>
+  </section>
+
+  <section class="categories" aria-labelledby="categories-title">
+    <div>
+      <p class="eyebrow">MVP launch categories</p>
+      <h2 id="categories-title">Initial supply focus</h2>
+    </div>
+
+    <div class="category-list">
+      @if (categories$ | async; as categories) {
+        @for (category of categories; track category.slug) {
+          <article class="category-card">
+            <span>#{{ category.priority }}</span>
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.launchShare }}% launch mix target</p>
+          </article>
+        }
+      } @else {
+        <p>Loading categories from the Spring Boot API.</p>
+      }
+    </div>
+  </section>
+
+  <router-outlet />
+</main>

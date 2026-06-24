@@ -1,0 +1,14 @@
+{
+  "name": "dealna",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "web:start": "npm --prefix apps/web start",
+    "web:build": "npm --prefix apps/web run build",
+    "web:test": "npm --prefix apps/web test",
+    "api:start": "mvn -f apps/api/pom.xml spring-boot:run",
+    "api:start:demo": "mvn -f apps/api/pom.xml spring-boot:run -Dspring-boot.run.profiles=demo",
+    "api:build": "mvn -f apps/api/pom.xml -DskipTests package",
+    "api:test": "mvn -f apps/api/pom.xml test"
+  }
+}
